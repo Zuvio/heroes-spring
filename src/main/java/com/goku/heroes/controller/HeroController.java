@@ -4,6 +4,7 @@ import com.goku.heroes.exception.ResourceNotFoundException;
 import com.goku.heroes.model.Hero;
 import com.goku.heroes.repository.HeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,7 +56,8 @@ public class HeroController {
 
     // Get all Heroes who's name is like the param
     @GetMapping("/heroes/searchContaining")
-    public List<Hero> searchHeroesContaining(@RequestParam("name") String name) {
+    public Iterable<Hero> searchHeroesContaining(@RequestParam("name") String name) {
         return heroRepository.findByNameContaining(name);
+//        return heroRepository.zoekTaak(name);
     }
 }
